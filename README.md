@@ -8,7 +8,7 @@
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen?style=flat-square)
 [![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/bethehero/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
-This app version allow everyone to see all open incidents from all NGOs. All the resources used by this application comes from its [`API`](https://github.com/DiegoVictor/bethehero/tree/master/api).
+This app version allow everyone to see all open incidents from all NGOs. All the resources used by this application comes from its [`API`](https://github.com/DiegoVictor/bethehero-api).
 
 ## Table of Contents
 * [Screenshots](#screenshots)
@@ -25,9 +25,9 @@ This app version allow everyone to see all open incidents from all NGOs. All the
 
 # Screenshots
 Click to expand.<br>
-<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero/master/app/screenshots/splash.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero/master/app/screenshots/incidents.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero/master/app/screenshots/incident.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/master/screenshots/splash.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/master/screenshots/incident.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/master/screenshots/incidents.jpg" width="32%" />
 
 # Installing
 Easy peasy lemon squeezy:
@@ -41,7 +41,7 @@ $ npm install
 > Was installed and configured the [`eslint`](https://eslint.org/) and [`prettier`](https://prettier.io/) to keep the code clean and patterned.
 
 ## Configuring
-Configure your environment variables and remember to start the [API](https://github.com/DiegoVictor/bethehero/tree/master/api) before to start this app.
+Configure your environment variables and remember to start the [API](https://github.com/DiegoVictor/bethehero-api) before to start this app.
 
 ### app.json
 In this file you may configure the API's url. Rename the `app.example.json` in the root directory to `app.json` then update with your settings **only the keys under `extra` key**.
@@ -51,7 +51,7 @@ key|description|default
 API_URL|API's url with version (v1)|`http://localhost:3333/v1`
 
 ### API
-Start the [`API`](https://github.com/DiegoVictor/bethehero/tree/master/api) (see its README for more information). In case of any change in the API's port or host remember to update the `app.json`'s `API_URL` property too.
+Start the [`API`](https://github.com/DiegoVictor/bethehero-api) (see its README for more information). In case of any change in the API's port or host remember to update the `app.json`'s `API_URL` property too.
 > Also, maybe you need run reverse command to the API's port: `adb reverse tcp:3333 tcp:3333`
 
 # Usage

@@ -14,7 +14,7 @@ This app version allow everyone to see all open incidents from all NGOs. All the
 * [Screenshots](#screenshots)
 * [Installing](#installing)
   * [Configuring](#configuring)
-    * [app.json](#appjson)
+    * [.env](#env)
     * [API](#api)
 * [Usage](#usage)
   * [Expo](#expo)
@@ -43,8 +43,8 @@ $ npm install
 ## Configuring
 Configure your environment variables and remember to start the [API](https://github.com/DiegoVictor/bethehero-api) before to start this app.
 
-### app.json
-In this file you may configure the API's url. Rename the `app.example.json` in the root directory to `app.json` then update with your settings **only the keys under `extra` key**.
+### .env
+In this file you may configure the API's url. Rename the `.env.example` in the root directory to `.env` then just update with your settings.
 
 key|description|default
 ---|---|---

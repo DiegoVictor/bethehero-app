@@ -13,5 +13,5 @@ web-report/
 # macOS
 .DS_Store
 
-app.json
 tests/coverage
+.env

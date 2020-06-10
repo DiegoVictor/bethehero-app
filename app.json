@@ -25,9 +25,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "extra": {
-      "API_URL": "http://127.0.0.1:3333/v1"
     }
   }
 }

@@ -20,7 +20,6 @@ This app version allow everyone to see all open incidents from all NGOs. All the
 * [Usage](#usage)
   * [Expo](#expo)
   * [OS](#os)
-  * [Reactotron](#reactotron)
 * [Running the tests](#running-the-tests)
   * [Coverage report](#coverage-report)
 
@@ -68,10 +67,6 @@ $ npm run start
 
 ## OS
 This app was tested only with Android through USB connection and [Genymotion](https://www.genymotion.com/) (Emulator), is strongly recommended to use the same operational system, but of course you can use an emulator or a real device connected through wifi or USB.
-
-## Reactotron
-The project comes configured with [Reactotron](https://github.com/infinitered/reactotron), after install just open it, then as soon as possible Reactotron will automatically identify new connections.
-> If Reactotron show an empty timeline after the app is running try run `adb reverse tcp:9090 tcp:9090`, then reload the app.
 
 # Running the tests
 [Jest](https://jestjs.io/) was the choice to test the app, to run:

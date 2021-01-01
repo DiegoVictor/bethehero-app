@@ -3,7 +3,7 @@ install:
   - npm install
   - npm install -g codecov
 node_js:
-  - node
+  - 14
 before_script:
   - cp .env.example .env
 script:

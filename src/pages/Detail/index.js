@@ -73,7 +73,7 @@ export default () => {
           <Value>{incident.description}</Value>
 
           <Label>Valor</Label>
-          <Value>{formated_value}</Value>
+          <Value testID="value">{formated_value}</Value>
         </Incident>
 
         <Box>

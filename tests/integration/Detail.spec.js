@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from 'react-native-testing-library';
+import { render, fireEvent } from '@testing-library/react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { composeAsync } from 'expo-mail-composer';
 import { Linking } from 'react-native';
@@ -19,8 +19,12 @@ describe('Detail', () => {
   it('should be able to see incident details', async () => {
     const incident = await factory.attrs('Incident');
 
+    jest.spyOn(Intl, 'NumberFormat').mockReturnValue({
+      format: () => incident.value,
+    });
+
     useRoute.mockReturnValue({ params: { incident } });
-    const { getByText } = render(<Detail />);
+    const { getByText, getByTestId } = render(<Detail />);
 
     expect(
       getByText(
@@ -28,14 +32,7 @@ describe('Detail', () => {
       )
     ).toBeTruthy();
     expect(getByText(incident.description)).toBeTruthy();
-    expect(
-      getByText(
-        Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(incident.value)
-      )
-    ).toBeTruthy();
+    expect(getByTestId('value')).toHaveTextContent(incident.value);
   });
 
   it('should be able to call whatsapp through deep linking', async () => {

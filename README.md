@@ -1,5 +1,5 @@
 # [App] Be The Hero
-[![Travis (.org)](https://img.shields.io/travis/DiegoVictor/bethehero-app?logo=travis&style=flat-square)](https://travis-ci.org/DiegoVictor/bethehero-app)
+[![Travis](https://img.shields.io/travis/com/DiegoVictor/bethehero-app?logo=travis&style=flat-square)](https://app.travis-ci.com/github/DiegoVictor/bethehero-app)
 [![react-native](https://img.shields.io/badge/react--native-0.61.4-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
 [![styled-components](https://img.shields.io/badge/styled_components-5.1.0-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
 [![eslint](https://img.shields.io/badge/eslint-6.8.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)

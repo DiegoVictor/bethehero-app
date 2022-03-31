@@ -1,7 +1,6 @@
 import React from 'react';
 import MockAdapter from 'axios-mock-adapter';
-import { act, fireEvent } from 'react-native-testing-library';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { act, fireEvent } from '@testing-library/react-native';
 import { create } from 'react-test-renderer';
 import { useNavigation } from '@react-navigation/native';
 

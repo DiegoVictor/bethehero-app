@@ -1,5 +1,5 @@
 import factory from 'factory-girl';
-import faker from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 
 factory.define(
   'Incident',
@@ -11,7 +11,7 @@ factory.define(
     ngo: {
       name: faker.name.findName,
       email: faker.internet.email,
-      whatsapp: () => faker.phone.phoneNumber('###########'),
+      whatsapp: () => faker.phone.number('###########'),
       city: faker.address.city,
       uf: faker.address.stateAbbr,
     },

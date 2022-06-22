@@ -2675,7 +2675,7 @@
   "resolved" "https://registry.npmjs.org/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.17.7.tgz"
   "version" "0.17.7"
 
-"babel-plugin-root-import@^5.1.0", "babel-plugin-root-import@^6.5.0":
+"babel-plugin-root-import@^5.1.0":
   "integrity" "sha512-SPzVOHd7nDh5loZwZBxtX/oOu1MXeKjTkz+1VnnzLWC0dk8sJIGC2IDQ2uWIBjE5mUtXlQ35MTHSqN0Xn7qHrg=="
   "resolved" "https://registry.npmjs.org/babel-plugin-root-import/-/babel-plugin-root-import-6.6.0.tgz"
   "version" "6.6.0"

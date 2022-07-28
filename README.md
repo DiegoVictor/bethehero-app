@@ -1,5 +1,5 @@
 # [App] Be The Hero
-[![Travis (.com) branch](https://img.shields.io/travis/com/diegovictor/bethehero-app/master?label=build&logo=travis&style=flat-square)](https://app.travis-ci.com/github/DiegoVictor/bethehero-app/builds)
+[![Travis (.com) branch](https://img.shields.io/travis/com/diegovictor/bethehero-app/main?label=build&logo=travis&style=flat-square)](https://app.travis-ci.com/github/DiegoVictor/bethehero-app/builds)
 [![react-native](https://img.shields.io/badge/react--native-0.61.4-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
 [![styled-components](https://img.shields.io/badge/styled_components-5.1.0-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
 [![eslint](https://img.shields.io/badge/eslint-6.8.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
@@ -7,7 +7,7 @@
 [![jest](https://img.shields.io/badge/jest-24.9.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
 [![expo](https://img.shields.io/badge/expo-37.0.0-000000?style=flat-square&logo=expo)](https://expo.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/bethehero-app?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/bethehero-app)
-[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/bethehero-app/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](https://github.com/DiegoVictor/bethehero-app/blob/main/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)<br>
 This app version allow everyone to see all open incidents from all NGOs. All the resources used by this application comes from its [`API`](https://github.com/DiegoVictor/bethehero-api).
 
@@ -25,9 +25,9 @@ This app version allow everyone to see all open incidents from all NGOs. All the
 
 # Screenshots
 Click to expand.<br>
-<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/master/screenshots/splash.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/master/screenshots/incident.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/master/screenshots/incidents.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/main/screenshots/splash.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/main/screenshots/incident.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/bethehero-app/main/screenshots/incidents.jpg" width="32%" />
 
 # Installing
 Easy peasy lemon squeezy:

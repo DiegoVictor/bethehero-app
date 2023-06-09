@@ -9,7 +9,7 @@ factory.define(
     title: faker.name.title,
     description: faker.lorem.paragraph,
     ngo: {
-      name: faker.name.findName,
+      name: faker.name.fullName,
       email: faker.internet.email,
       whatsapp: () => faker.phone.number('###########'),
       city: faker.address.city,

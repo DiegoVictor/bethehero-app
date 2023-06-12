@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Detail from '~/pages/Detail';
-import Incidents from '~/pages/Incidents';
+import { Detail } from '~/pages/Detail';
+import { Incidents } from '~/pages/Incidents';
 
-const StackNavigator = createStackNavigator();
+const StackNavigator = createNativeStackNavigator();
 
 export default () => (
   <NavigationContainer>

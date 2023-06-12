@@ -20,7 +20,7 @@ import {
   Value,
 } from './styles';
 
-export default () => {
+export function Incidents() {
   const { navigate } = useNavigation();
   const [incidents, setIncidents] = useState([]);
   const [total, setTotal] = useState(0);
@@ -108,4 +108,4 @@ export default () => {
       />
     </Container>
   );
-};
+}

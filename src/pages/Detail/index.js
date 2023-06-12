@@ -20,7 +20,7 @@ import {
   Value,
 } from './styles';
 
-export default () => {
+export function Detail() {
   const navigation = useNavigation();
   const { params } = useRoute();
 
@@ -93,4 +93,4 @@ export default () => {
       </ScrollView>
     </Container>
   );
-};
+}

@@ -10,7 +10,7 @@ import {
   ButtonText,
   Container,
   Description,
-  Incidents,
+  IncidentsList,
   Incident,
   Header,
   Label,
@@ -71,7 +71,7 @@ export default () => {
       <Title>Bem-vindo!</Title>
       <Description>Escolha um dos casos abaixo e salve o dia.</Description>
 
-      <Incidents
+      <IncidentsList
         testID="incidents"
         data={incidents}
         keyExtractor={(incident) => String(incident.id)}

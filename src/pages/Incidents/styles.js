@@ -34,7 +34,7 @@ export const Description = styled.Text`
   line-height: 24px;
 `;
 
-export const Incidents = styled.FlatList`
+export const IncidentsList = styled.FlatList`
   margin-top: 32px;
 `;
 

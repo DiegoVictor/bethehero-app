@@ -26,7 +26,7 @@ export function Detail() {
 
   const { incident } = useMemo(() => params, [params]);
 
-  const formated_value = useMemo(() => {
+  const formatedValue = useMemo(() => {
     return Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
@@ -35,8 +35,8 @@ export function Detail() {
 
   const message = useMemo(
     () =>
-      `Olá ${incident.ngo.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${formated_value}`,
-    [incident, formated_value]
+      `Olá ${incident.ngo.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${formatedValue}`,
+    [incident, formatedValue]
   );
 
   const sendMail = useCallback(() => {
@@ -73,7 +73,7 @@ export function Detail() {
           <Value>{incident.description}</Value>
 
           <Label>Valor</Label>
-          <Value testID="value">{formated_value}</Value>
+          <Value testID="value">{formatedValue}</Value>
         </Incident>
 
         <Box>

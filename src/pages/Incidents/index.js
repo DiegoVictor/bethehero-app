@@ -26,13 +26,14 @@ export function Incidents() {
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [has_more, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(true);
 
   const getPage = useCallback(async () => {
     setLoading(true);
     const { headers, data } = await api.get('incidents', {
       params: { page },
     });
+
     setIncidents([...incidents, ...data]);
 
     if (headers['x-total-count'] !== total) {
@@ -50,14 +51,13 @@ export function Incidents() {
   }, [incidents, page, total]);
 
   const getNextPage = useCallback(() => {
-    if (!loading && has_more) {
+    if (!loading && hasMore) {
       setPage(page + 1);
     }
-  }, [loading, has_more, page, setPage]);
+  }, [loading, hasMore, page, setPage]);
 
   useEffect(() => {
     getPage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   return (

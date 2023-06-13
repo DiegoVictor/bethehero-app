@@ -5,15 +5,15 @@ factory.define(
   'Incident',
   {},
   {
-    id: faker.datatype.number,
-    title: faker.name.title,
+    id: faker.number.int,
+    title: faker.lorem.words,
     description: faker.lorem.paragraph,
     ngo: {
-      name: faker.name.fullName,
+      name: faker.person.fullName,
       email: faker.internet.email,
       whatsapp: () => faker.phone.number('###########'),
-      city: faker.address.city,
-      uf: faker.address.stateAbbr,
+      city: faker.location.city,
+      uf: faker.location.state,
     },
     value: faker.finance.amount,
   }

@@ -1,21 +1,24 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import { composeAsync } from 'expo-mail-composer';
 import { Linking } from 'react-native';
 
-import Detail from '~/pages/Detail';
+import { Detail } from '~/pages/Detail';
 import factory from '../utils/factory';
 
-jest.mock('@react-navigation/native');
+const mockGoBack = jest.fn();
+const mockUseRoute = jest.fn();
+jest.mock('@react-navigation/native', () => {
+  return {
+    useNavigation: () => ({
+      goBack: mockGoBack,
+    }),
+    useRoute: () => mockUseRoute(),
+  };
+});
 jest.mock('expo-mail-composer');
 
 describe('Detail', () => {
-  const goBack = jest.fn();
-
-  useNavigation.mockReturnValue({ goBack });
-  Linking.openURL = jest.fn();
-
   it('should be able to see incident details', async () => {
     const incident = await factory.attrs('Incident');
 
@@ -23,7 +26,7 @@ describe('Detail', () => {
       format: () => incident.value,
     });
 
-    useRoute.mockReturnValue({ params: { incident } });
+    mockUseRoute.mockReturnValue({ params: { incident } });
     const { getByText, getByTestId } = render(<Detail />);
 
     expect(
@@ -37,29 +40,31 @@ describe('Detail', () => {
 
   it('should be able to call whatsapp through deep linking', async () => {
     const incident = await factory.attrs('Incident');
-    const formated_value = Intl.NumberFormat('pt-BR', {
+    const formatedValue = Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(incident.value);
 
-    useRoute.mockReturnValue({ params: { incident } });
+    const openURL = jest.spyOn(Linking, 'openURL');
+
+    mockUseRoute.mockReturnValue({ params: { incident } });
     const { getByTestId } = render(<Detail />);
 
     fireEvent.press(getByTestId('whatsapp'));
 
-    expect(Linking.openURL).toHaveBeenCalledWith(
-      `whatsapp://send?phone:${incident.ngo.whatsapp}&text=Olá ${incident.ngo.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${formated_value}`
+    expect(openURL).toHaveBeenCalledWith(
+      `whatsapp://send?phone:${incident.ngo.whatsapp}&text=Olá ${incident.ngo.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${formatedValue}`
     );
   });
 
   it('should be able to call mail composer', async () => {
     const incident = await factory.attrs('Incident');
-    const formated_value = Intl.NumberFormat('pt-BR', {
+    const formatedValue = Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(incident.value);
 
-    useRoute.mockReturnValue({ params: { incident } });
+    mockUseRoute.mockReturnValue({ params: { incident } });
     const { getByTestId } = render(<Detail />);
 
     fireEvent.press(getByTestId('email'));
@@ -67,18 +72,18 @@ describe('Detail', () => {
     expect(composeAsync).toHaveBeenCalledWith({
       subject: `Herói do caso: ${incident.title}`,
       recipients: [incident.ngo.email],
-      body: `Olá ${incident.ngo.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${formated_value}`,
+      body: `Olá ${incident.ngo.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${formatedValue}`,
     });
   });
 
   it('should be able to back to previous page', async () => {
     const incident = await factory.attrs('Incident');
 
-    useRoute.mockReturnValue({ params: { incident } });
+    mockUseRoute.mockReturnValue({ params: { incident } });
     const { getByTestId } = render(<Detail />);
 
     fireEvent.press(getByTestId('back'));
 
-    expect(goBack).toHaveBeenCalled();
+    expect(mockGoBack).toHaveBeenCalled();
   });
 });

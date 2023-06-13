@@ -1,44 +1,47 @@
 import React from 'react';
 import MockAdapter from 'axios-mock-adapter';
-import { act, fireEvent } from '@testing-library/react-native';
-import { create } from 'react-test-renderer';
-import { useNavigation } from '@react-navigation/native';
+import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import api from '~/services/api';
 import factory from '../utils/factory';
-import Incidents from '~/pages/Incidents';
+import { Incidents } from '~/pages/Incidents';
 
-jest.mock('@react-navigation/native');
+const apiMock = new MockAdapter(api);
+const mockNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+  return {
+    useNavigation: () => ({
+      navigate: mockNavigate,
+    }),
+  };
+});
 
 describe('Incidents', () => {
-  const api_mock = new MockAdapter(api);
-  const navigate = jest.fn();
-
-  useNavigation.mockReturnValue({ navigate });
-
   beforeEach(() => {
-    api_mock.reset();
+    apiMock.reset();
   });
 
   it('should be able to get a list of incidents', async () => {
     const incidents = await factory.attrsMany('Incident', 3);
-    api_mock.onGet('/incidents').reply(200, incidents, {
+
+    apiMock.onGet('/incidents').reply(200, incidents, {
       'x-total-counts': incidents.length,
     });
 
-    let root;
+    const { getByText, getByTestId } = render(<Incidents />);
+
+    const [{ id }] = incidents;
+    await waitFor(() => getByTestId(`incident_${id}_detail`));
+
     await act(async () => {
-      root = create(<Incidents />);
+      fireEvent(getByTestId('incidents'), 'onEndReached');
     });
 
-    const nodes = root.root
-      .findAllByType('Text')
-      .map((node) => node.children.shift());
-
     incidents.forEach(({ title, value }) => {
-      expect(nodes.includes(title)).toBeTruthy();
+      expect(getByText(title)).toBeTruthy();
       expect(
-        nodes.includes(
+        getByText(
           Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL',
@@ -50,7 +53,8 @@ describe('Incidents', () => {
 
   it('should be able to get a second page of incidents', async () => {
     const incidents = await factory.attrsMany('Incident', 10);
-    api_mock
+
+    apiMock
       .onGet('/incidents', { params: { page: 1 } })
       .reply(200, incidents.slice(0, 5), {
         'x-total-counts': 10,
@@ -59,24 +63,20 @@ describe('Incidents', () => {
       .onGet('/incidents', { params: { page: 2 } })
       .reply(200, incidents.slice(-5), { 'x-total-counts': 10 });
 
-    let root;
-    await act(async () => {
-      root = create(<Incidents />);
-    });
+    const { getByTestId, getByText } = render(<Incidents />);
+
+    const [{ id }] = incidents;
+    await waitFor(() => getByTestId(`incident_${id}_detail`));
 
     await act(async () => {
-      fireEvent(root.root.findByProps({ testID: 'incidents' }), 'onEndReached');
+      fireEvent(getByTestId('incidents'), 'onEndReached');
     });
-
-    const nodes = root.root
-      .findAllByType('Text')
-      .map((node) => node.children.shift());
 
     incidents.forEach(({ title, value }) => {
-      expect(nodes.includes(title)).toBeTruthy();
+      expect(getByText(title)).toBeTruthy();
 
       expect(
-        nodes.includes(
+        getByText(
           Intl.NumberFormat('pt-BR', {
             style: 'currency',
             currency: 'BRL',
@@ -90,19 +90,15 @@ describe('Incidents', () => {
 
   it("should be able to go to the incident's detail", async () => {
     const incident = await factory.attrs('Incident');
-    api_mock
-      .onGet('/incidents')
-      .reply(200, [incident], { 'x-total-counts': 1 });
 
-    let root;
-    await act(async () => {
-      root = create(<Incidents />);
-    });
+    apiMock.onGet('/incidents').reply(200, [incident], { 'x-total-counts': 1 });
 
-    fireEvent.press(
-      root.root.findByProps({ testID: `incident_${incident.id}_detail` })
-    );
+    const { getByTestId } = render(<Incidents />);
 
-    expect(navigate).toHaveBeenCalledWith('Detail', { incident });
+    await waitFor(() => getByTestId(`incident_${incident.id}_detail`));
+
+    fireEvent.press(getByTestId(`incident_${incident.id}_detail`));
+
+    expect(mockNavigate).toHaveBeenCalledWith('Detail', { incident });
   });
 });

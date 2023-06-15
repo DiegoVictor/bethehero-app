@@ -31,9 +31,13 @@
     "@faker-js/faker": "^8.0.2",
     "@testing-library/jest-native": "^5.4.2",
     "@testing-library/react-native": "^12.1.2",
-    "axios-mock-adapter": "^1.21.4",
+    "axios-mock-adapter": "^1.21.5",
     "babel-plugin-root-import": "^6.6.0",
-    "factory-girl": "^5.0.4"
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "factory-girl": "^5.0.4",
+    "prettier": "^2.8.8"
   },
   "private": true
 }

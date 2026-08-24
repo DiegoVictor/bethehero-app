@@ -11,7 +11,10 @@ factory.define(
     ngo: {
       name: faker.person.fullName,
       email: faker.internet.email,
-      whatsapp: () => faker.phone.number('###########'),
+      whatsapp: () =>
+        faker.phone.number({
+          style: 'mobile',
+        }),
       city: faker.location.city,
       uf: faker.location.state,
     },
@@ -19,4 +22,4 @@ factory.define(
   }
 );
 
-export default factory;
+export { factory };

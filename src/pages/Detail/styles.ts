@@ -47,7 +47,7 @@ export const Incident = styled.View`
   border-radius: 8px;
   margin-bottom: 16px;
   margin-top: 48px;
-  padding: 24px;
+  padding: 0px 24px 24px;
 `;
 
 export const Header = styled.View`

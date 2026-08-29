@@ -1,10 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Image, Linking, ScrollView } from 'react-native';
-import { Feather } from '@expo/vector-icons';
 import * as MailComposer from 'expo-mail-composer';
-import { useNavigation, useRoute } from '@react-navigation/native';
-
-import Logo from '~/assets/logo.png';
+import { Feather } from '@react-native-vector-icons/feather';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { formatValue } from '../../helpers/format-value';
+import { IIncident } from '../../types/incident';
+import Logo from '../../assets/logo.png';
 import {
   Action,
   ActionText,
@@ -20,17 +21,16 @@ import {
   Value,
 } from './styles';
 
+type RouteParams = RouteProp<{ Detail: { incident: IIncident } }, 'Detail'>;
+
 export function Detail() {
   const navigation = useNavigation();
-  const { params } = useRoute();
 
+  const { params } = useRoute<RouteParams>();
   const { incident } = useMemo(() => params, [params]);
 
   const formatedValue = useMemo(() => {
-    return Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    }).format(incident.value);
+    return formatValue(incident.value);
   }, [incident]);
 
   const message = useMemo(
@@ -39,19 +39,19 @@ export function Detail() {
     [incident, formatedValue]
   );
 
-  const sendMail = useCallback(() => {
+  const sendMail = () => {
     MailComposer.composeAsync({
       subject: `Herói do caso: ${incident.title}`,
       recipients: [incident.ngo.email],
       body: message,
     });
-  }, [incident, message]);
+  };
 
-  const sendWhatsApp = useCallback(() => {
+  const sendWhatsApp = () => {
     Linking.openURL(
       `whatsapp://send?phone:${incident.ngo.whatsapp}&text=${message}`
     );
-  }, [incident, message]);
+  };
 
   return (
     <Container>

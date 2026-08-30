@@ -1,10 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Image } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather } from '@react-native-vector-icons/feather';
 import { useNavigation } from '@react-navigation/native';
-
-import Logo from '~/assets/logo.png';
-import api from '~/services/api';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Logo from '../../assets/logo.png';
+import { api } from '../../services/api';
+import { IIncident } from '../../types/incident';
+import { StackParamList } from '../..';
 import {
   Button,
   ButtonText,
@@ -20,16 +22,19 @@ import {
   Value,
 } from './styles';
 
+type NavigateProps = NativeStackScreenProps<StackParamList>['navigation'];
+
 export function Incidents() {
-  const { navigate } = useNavigation();
-  const [incidents, setIncidents] = useState([]);
+  const { navigate } = useNavigation<NavigateProps>();
+  const [incidents, setIncidents] = useState<IIncident[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
-  const getPage = useCallback(async () => {
+  const getPage = async () => {
     setLoading(true);
+
     const { headers, data } = await api.get('incidents', {
       params: { page },
     });
@@ -48,13 +53,13 @@ export function Incidents() {
     ) {
       setHasMore(false);
     }
-  }, [incidents, page, total]);
+  };
 
-  const getNextPage = useCallback(() => {
+  const getNextPage = () => {
     if (!loading && hasMore) {
       setPage(page + 1);
     }
-  }, [loading, hasMore, page, setPage]);
+  };
 
   useEffect(() => {
     getPage();

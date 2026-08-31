@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 import Constants from 'expo-constants';
+import { IIncident } from '../../types/incident';
+import { FlatList } from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -34,7 +36,7 @@ export const Description = styled.Text`
   line-height: 24px;
 `;
 
-export const IncidentsList = styled.FlatList`
+export const IncidentsList = styled(FlatList<IIncident>)`
   margin-top: 32px;
 `;
 
